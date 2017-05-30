@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="test.mapper.AdminMapper">
+
+	<insert id="insert" parameterType="Admin">
+		insert into
+		users(userName,password,age,enabled) values(#{userName},#{password},#{age},#{enabled})
+	</insert>
+
+	<update id="update" parameterType="Admin">
+		update t_user set
+		user_name=#{userName},user_age=#{age} where user_id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from t_user where
+		user_id=#{id}
+	</delete>
+
+	<select id="findById" parameterType="int" resultType="Admin">
+		select
+		user_id id,user_name userName,user_age age from t_user where
+		user_id=#{id}
+	</select>
+
+	<select id="findAll" resultType="Admin">
+		select user_id id,user_name
+		userName,user_age age from t_user
+	</select>
+
+</mapper>  
