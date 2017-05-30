@@ -9,7 +9,7 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/signin.css" />"
 	rel="stylesheet" />
-<title>Insert title here</title>
+<title>Hello World</title>
 </head>
 <body>
 </head>
