@@ -24,7 +24,13 @@ public class AdminService {
 		admin.setAge(11);
 		admin.setEnabled(true);
 
-//		adminMapper.insert(admin);
+		// adminMapper.insert(admin);
 		return "index";
+	}
+
+	@RequestMapping("submit")
+	public String submit() {
+
+		return "home";
 	}
 }
