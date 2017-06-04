@@ -31,6 +31,6 @@ public class AdminService {
 	@RequestMapping("submit")
 	public String submit() {
 
-		return "home";
+		return "product";
 	}
 }

@@ -4,11 +4,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/signin.css" />"
 	rel="stylesheet" />
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css">
+
+<script src="<c:url value="/resources/js/jquery-3.2.1.min.js" />"></script>
+
+<script type="text/javascript">
+	function doLogin() {
+		
+		var url =  "${pageContext.request.contextPath}/j_spring_security_check";
+		var username = $("input[name='username']").val();
+		var password = $("input[name='password']").val();
+
+		$.ajax({
+			url : url,
+			type : "POST",
+			data : "username=" + username + "&password=" + password,
+			success : function(data) {
+/* 				$("#results").text(data); */
+            window.location.href = "${pageContext.request.contextPath}/submit";
+ 
+			}
+		})
+	}
+</script>
+
 <title>Hello World</title>
 </head>
 <body>
@@ -16,22 +41,27 @@
 
 <div class="container">
 
-	<form class="form-signin"
-		action="${pageContext.request.contextPath}/submit" method="POST">
+	<form name="loginForm" class="form-signin">
 		<h2 class="form-signin-heading">Please sign in</h2>
-		<label for="inputEmail" class="sr-only">Email address</label> <input
-			type="email" id="inputEmail" class="form-control"
-			placeholder="Email address" required="" autofocus=""> <label
+		<label for="inputUserName" class="sr-only">Username</label> <input
+			type="text" id="inputUserName" class="form-control" name="username"
+			placeholder="User name" required="" autofocus=""> <label
 			for="inputPassword" class="sr-only">Password</label> <input
 			type="password" id="inputPassword" class="form-control"
-			placeholder="Password" required="">
+			name="password" placeholder="Password" required="">
 		<div class="checkbox">
 			<label> <input type="checkbox" value="remember-me">
 				Remember me
 			</label>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-			in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="button"
+			onclick="doLogin()">Sign in</button>
+
+		<%-- 		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /> --%>
+
+		<h4 style="color: red">${error}</h4>
+		<div id="results"></div>
 	</form>
 
 </div>
