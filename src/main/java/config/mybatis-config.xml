@@ -3,13 +3,31 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<settings>
+		<!--允许 JDBC 支持自动生成主键 -->
+		<setting name="useGeneratedKeys" value="false" />
+		<!--是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 
+			的类似映射。 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!--log -->
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+
 	<!-- 实体类,简称 -设置别名 -->
 	<typeAliases>
 		<typeAlias alias="Admin" type="test.model.Admin" />
+
+		<typeAlias alias="Product" type="test.model.Product" />
+
+
+
 	</typeAliases>
 	<!-- 实体接口映射资源 -->
 	<mappers>
 		<mapper resource="test/mapper/AdminMapper.xml" />
+
+		<mapper resource="test/mapper/ProductMapper.xml" />
+
 	</mappers>
 
 </configuration>    
