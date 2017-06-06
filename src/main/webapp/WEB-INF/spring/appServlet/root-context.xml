@@ -56,7 +56,19 @@
 			username-parameter="username" password-parameter="password" />
 		<!-- <security:logout logout-success-url="/login?logout" /> -->
 
+		<!-- 登出操作后跳转到该页面 -->
+		<security:logout logout-url="/loggedout"
+			logout-success-url="/" delete-cookies="JSESSIONID" />
+		<security:remember-me />
+
+		<!-- SESSION超时后跳转到该页面 -->
+		<security:session-management
+			invalid-session-url="/loggedout">
+		</security:session-management>
+
 	</security:http>
+
+
 
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>

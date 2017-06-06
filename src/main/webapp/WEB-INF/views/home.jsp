@@ -62,8 +62,14 @@
 
 			<!-- /.row -->
 			<div class="row">
-	product
+				<form id="logoutForm" action="<c:url value='/loggedout'/>"
+					method="POST">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 
+
+					<button type="submit">loggout</button>
+				</form>
 			</div>
 			<!-- /.row -->
 		</div>

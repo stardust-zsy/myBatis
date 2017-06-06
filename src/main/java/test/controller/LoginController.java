@@ -24,9 +24,9 @@ public class LoginController {
 		return "index";
 	}
 
-	@RequestMapping("/login_success.do")
+	@RequestMapping("/loggedout")
 	public String login_success(Model model) {
 
-		return "home";
+		return "loggedout";
 	}
 }

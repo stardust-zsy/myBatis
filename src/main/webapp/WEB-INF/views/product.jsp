@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -108,6 +110,15 @@
 			<a class="navbar-brand" href="#">test</a>
 		</div>
 
+		<%-- 		<form id="logoutForm" action="<c:url value='/loggedout'/>"
+			method="POST">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+
+
+			<button type="submit">loggout</button>
+		</form> --%> <c:url value="/loggedout" var="logoutUrl" /> <a
+			href="${logoutUrl}">退出系统</a>
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
@@ -121,16 +132,18 @@
 							<li><a href="#">child two</a></li>
 						</ul></li>
 
-					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-							two<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">child one</a></li>
-							<li><a href="#">child two</a></li>
-							<li><a href="#">child three</a></li>
-							<li><a href="#">child four</a></li>
+					<security:authorize ifAnyGranted="ROLE_ADMIN">
 
-						</ul></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+								two<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">child one</a></li>
+								<li><a href="#">child two</a></li>
+								<li><a href="#">child three</a></li>
+								<li><a href="#">child four</a></li>
 
+							</ul></li>
+					</security:authorize>
 					<li><a href="#"> one</a></li>
 				</ul>
 			</div>
