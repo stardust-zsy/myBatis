@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
-	@RequestMapping("/login_fail.do")
+	@RequestMapping("/login")
 	/* @ResponseBody */
-	public Model login_fail(@RequestParam(value = "error", required = false) String error,
+	public String login_fail(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model) {
 
 		if (error != null) {
@@ -21,7 +21,7 @@ public class LoginController {
 		}
 		model.addAttribute("error", "Invalid userName and Password");
 
-		return model;
+		return "index";
 	}
 
 	@RequestMapping("/login_success.do")

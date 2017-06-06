@@ -41,27 +41,26 @@
 
 <div class="container">
 
-	<form name="loginForm" class="form-signin"
-		action="<c:url value='/j_spring_security_check'/>" method="post">
+	<form name="loginForm" class="form-signin">
 		<h2 class="form-signin-heading">Please sign in</h2>
 		<label for="inputUserName" class="sr-only">Username</label> <input
-			type="text" id="inputUserName" class="form-control" 
-			name="j_username"
+			type="text" id="inputUserName" class="form-control" name="username"
 			placeholder="User name" required="" autofocus=""> <label
 			for="inputPassword" class="sr-only">Password</label> <input
 			type="password" id="inputPassword" class="form-control"
-			name="j_password" placeholder="Password" required="">
+			name="password" placeholder="Password" required="">
 		<div class="checkbox">
 			<label> <input type="checkbox" value="remember-me">
 				Remember me
 			</label>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-			in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="button"
+			onclick="doLogin()">Sign in</button>
 
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+		<%-- 		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /> --%>
 
+		<h4 style="color: red">${error}</h4>
 		<div id="results"></div>
 	</form>
 
