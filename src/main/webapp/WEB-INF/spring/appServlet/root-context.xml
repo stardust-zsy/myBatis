@@ -45,12 +45,12 @@
 		<security:intercept-url pattern="/**/*.js"
 			access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<security:intercept-url pattern="/submit**"
-			access="ROLE_USER" />
-			
+			access="ROLE_USER,ROLE_ADMIN" />
+
 		<!-- 设置登录过滤器 -->
 		<security:custom-filter before="FORM_LOGIN_FILTER"
 			ref="authenticationProcessingFilter" />
-			
+
 		<security:form-login login-page="/"
 			default-target-url="/login_success.do" authentication-failure-url="/login_fail"
 			username-parameter="username" password-parameter="password" />
@@ -61,24 +61,23 @@
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>
 
-			 <security:user-service> <security:user name="admin123" password="admin123" 
-				authorities="ROLE_USER" /> </security:user-service> 
+			<!-- <security:user-service> <security:user name="admin123" password="admin123" 
+				authorities="ROLE_USER" /> </security:user-service> -->
 
-<!-- 			<security:jdbc-user-service
+			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				authorities-by-username-query="SELECT 
-				username, rolecd, role From authorities WHERE username = ?"
-				users-by-username-query="SELECT 
-				username, password FROM users WHERE username = ?" /> -->
+				users-by-username-query="SELECT users.username AS username, users.password,  enabled AS enabled FROM users WHERE users.username = ?"
+
+				authorities-by-username-query="SELECT authorities.username AS username,  authorities.authority AS authorities From authorities WHERE authorities.username = ?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-	
-	    <!-- 自定义消息 -->  
-    <b:bean id="messageSource"  
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
-        <b:property name="basename"  
-            value="classpath:org/springframework/security/messages" />  
-    </b:bean>  
+
+	<!-- 自定义消息 -->
+	<b:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<b:property name="basename"
+			value="classpath:org/springframework/security/messages" />
+	</b:bean>
 
 	<!-- 定制登录过滤器 -->
 	<beans:bean id="loginSuccessHandler" class="test.security.LoginSuccessHandler">
