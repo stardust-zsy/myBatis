@@ -52,7 +52,7 @@ public class AdminService {
 		pro.setCustomer("customer");
 //		 productMapper.insert(pro);
 
-		return "product";
+		return "home";
 	}
 
 	@RequestMapping("doSelect")
@@ -66,6 +66,35 @@ public class AdminService {
 		}
 
 		return objectMapper.writeValueAsString(product);
+	}
+	
+	
+	@RequestMapping("doEnter")
+	@ResponseBody
+	public String doEnter(Model model)  {
+
+		return "product";
+	}
+	
+	@RequestMapping("product")
+	public String product(Model model)  {
+
+		
+		
+		model.addAttribute("test","OK");
+		
+		return "product";
+	}
+
+	
+	@RequestMapping("timeOut")
+	public String timeOut(Model model)  {
+
+		
+		
+		model.addAttribute("test","OK");
+		
+		return "timeOut";
 	}
 
 }
