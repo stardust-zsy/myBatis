@@ -26,6 +26,15 @@
 
 <script
 	src="<c:url value="/resources/js/dataTables.bootstrap.min.js" />"></script>
+	
+<script
+	src="<c:url value="/resources/js/dataTables.bootstrap.min.js" />"></script>
+		
+	
+	
+	
+	
+	
 <script type="text/javascript">
 	function enter() {
 		
@@ -72,11 +81,11 @@
 
 					<li><a href="<c:url value='/submit'/>" ><i class="fa fa-dashboard fa-fw"></i>
 							Dashboard</a></li>
-					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+					<li><a ><i class="fa fa-bar-chart-o fa-fw"></i>
 							menu<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="#" onclick="enter()">child one</a></li>
-							<li><a href="#" onclick="enter2()">child two</a></li>
+							<li><a  onclick="enter()">child one</a></li>
+							<li><a  onclick="enter2()">child two</a></li>
 						</ul></li>
 
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
@@ -84,10 +93,10 @@
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								two<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">child one</a></li>
-								<li><a href="#">child two</a></li>
-								<li><a href="#">child three</a></li>
-								<li><a href="#">child four</a></li>
+								<li><a >child one</a></li>
+								<li><a >child two</a></li>
+								<li><a >child three</a></li>
+								<li><a >child four</a></li>
 
 							</ul></li>
 					</security:authorize>
