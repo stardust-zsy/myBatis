@@ -38,6 +38,10 @@
 	<select id="findAll" resultType="Product">
 		select
 		product_Id,product_Nm,day_From,day_End,price,customer
+<!-- 
+		where product_Nm
+		= #{product_Nm} -->
+
 
 		from product
 	</select>

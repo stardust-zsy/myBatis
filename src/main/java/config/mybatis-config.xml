@@ -18,6 +18,10 @@
 		<typeAlias alias="Admin" type="test.model.Admin" />
 
 		<typeAlias alias="Product" type="test.model.Product" />
+		<typeAlias alias="Shop" type="test.model.Shop" />
+
+
+
 
 
 
@@ -28,6 +32,7 @@
 
 		<mapper resource="test/mapper/ProductMapper.xml" />
 
+		<mapper resource="test/mapper/ShopMapper.xml" />
 	</mappers>
 
 </configuration>    

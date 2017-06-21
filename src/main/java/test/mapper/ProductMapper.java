@@ -13,7 +13,7 @@ public interface ProductMapper {
 
 	boolean delete(int id);
 
-	Admin findById(int id);
+	Product findById(Product id);
 
 	List<Product> findAll();
 }

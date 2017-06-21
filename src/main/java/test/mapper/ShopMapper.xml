@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="test.mapper.ShopMapper">
+
+	<insert id="insert" parameterType="Shop">
+		insert into
+		product(product_Id,product_Nm,day_From,day_End,price,customer)
+		values(#{productId},#{productNm},#{dayFrom},#{dayEnd},#{price},#{customer})
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		delete from product where
+		product_Id=#{productId}
+	</delete>
+	
+
+	<select id="findAll" resultType="Shop">
+		select
+		shop_Id,shop_Nm
+
+		from shop
+	</select>
+
+
+ 	<!-- <select id="findById" resultMap="Product" parameterType="test.model.Test">
+		select
+		product_Id,product_Nm,day_From,day_End,price,customer
+
+		from
+		product
+
+		where
+		<if test="productId !=null ">
+			product_Id =
+			#{productId}
+		</if>
+		<if test="productNm null and productNm != '' ">
+			AND product_Nm =
+			#{product_Nm}
+		</if>
+
+	</select>
+	 -->
+	
+</mapper>  

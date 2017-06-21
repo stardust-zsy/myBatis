@@ -3,6 +3,8 @@ package test.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import test.mapper.AdminMapper;
 import test.mapper.ProductMapper;
+import test.mapper.ShopMapper;
 import test.model.Admin;
 import test.model.Product;
+import test.model.Shop;
 
 @Controller
 public class AdminService {
@@ -25,6 +29,9 @@ public class AdminService {
 
 	@Autowired
 	private ProductMapper productMapper;
+
+	@Autowired
+	private ShopMapper shopMapper;
 
 	@RequestMapping("/")
 	public String login() throws SQLException {
@@ -50,15 +57,18 @@ public class AdminService {
 		pro.setDayEnd("20180605");
 		pro.setPrice("111");
 		pro.setCustomer("customer");
-//		 productMapper.insert(pro);
+		// productMapper.insert(pro);
 
 		return "home";
 	}
 
 	@RequestMapping("doSelect")
 	@ResponseBody
-	public String doSelect(Model model) throws JsonProcessingException {
+	public String doSelect(HttpServletRequest request, Model model, Product p)
+			throws JsonProcessingException {
+
 		ObjectMapper objectMapper = new ObjectMapper();
+
 		List<Product> product = productMapper.findAll();
 
 		if (product.size() == 0) {
@@ -67,33 +77,28 @@ public class AdminService {
 
 		return objectMapper.writeValueAsString(product);
 	}
-	
-	
-	@RequestMapping("doEnter")
-	@ResponseBody
-	public String doEnter(Model model)  {
 
-		return "product";
-	}
-	
+
 	@RequestMapping("product")
-	public String product(Model model)  {
+	public String product(Model model) throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<Shop> shopData = shopMapper.findAll();
 
-		
-		
-		model.addAttribute("test","OK");
-		
+		if (shopData.size() == 0) {
+			return null;
+		}
+
+		model.addAttribute("test", objectMapper.writeValueAsString(shopData));
+		// model.addAttribute("test", shopData);
+
 		return "product";
 	}
 
-	
 	@RequestMapping("timeOut")
-	public String timeOut(Model model)  {
+	public String timeOut(Model model) {
 
-		
-		
-		model.addAttribute("test","OK");
-		
+		model.addAttribute("test", "OK");
+
 		return "timeOut";
 	}
 
