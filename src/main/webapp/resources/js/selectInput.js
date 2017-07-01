@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('#example').DataTable({
+	$('#examplea').DataTable({
 		"paging" : false,
 		"info" : false,
 		"searching":false,

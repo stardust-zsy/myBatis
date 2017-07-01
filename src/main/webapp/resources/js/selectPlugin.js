@@ -2,7 +2,7 @@
 
 	var methods = {
 
-		init : function(id, json, bool) {
+		init : function(id, json, bool, inputFlg) {
 
 			$id = id;
 			var select_cd = "";
@@ -27,8 +27,13 @@
 
 			$("#" + id).append(
 					"<select id='" + id + "_select'>" + "<option value=''>"
-							+ select_data + "</select>"
-							+ "<input type='text' id='" + id + "_input'/>");
+							+ select_data + "</select>");
+			
+			
+			if(inputFlg!==false){
+				var inp = "<input type='text' id='" + id + "_input'/>";
+				$("#" + id).append(inp);
+			}
 
 			var $select_Id = "#" + id + "_select";
 			var $input_Id = "#" + id + "_input";

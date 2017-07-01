@@ -121,14 +121,6 @@
 		</div>
 	</div>
 
-	<%-- 	<c:forEach items="${users}" var="users">
-		<tr>
-			<td>userName</td>
-			<td>${users.userName}</td>
-			<td>age</td>
-			<td>${users.age}</td>
-		</tr>
-	</c:forEach> --%>
 
 </body>
 </html>

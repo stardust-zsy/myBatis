@@ -2,14 +2,12 @@
 <script src="<c:url value="/resources/js/selectInput.js" />"></script>
 
 <script src="<c:url value="/resources/js/selectPlugin.js" />">
-
-        
-	$("#test1").selectPlugin("init", "test1", "${test}", false);
-
 </script>
 
 
 <script>
+
+var selectFlag = false;
 
 $("#test1").selectPlugin("init", "test1", ${test}, false);
 $("#test2").selectPlugin("init", "test2", ${test}, true);
@@ -20,8 +18,8 @@ function screenData(){
 	
 	var a = $("#test1").selectPlugin("getValue","test1");
 	var b = $("#test2").selectPlugin("getValue","test2");
-	obj.productId = JSON.stringify(a);
-	obj.productNm = JSON.stringify(b);
+	obj.productId = a;
+	obj.productNm = b;
 	obj.dayfrom = "1";
 	obj.dayEnd ="2";
 	obj.price = "3";
@@ -36,20 +34,19 @@ function screenData(){
 function doSelect() {
 	debugger;
 	var url = "doSelect";
-	var t = $('#example').dataTable();
+/* 	var t = $('#example').dataTable();
 	t.fnClearTable();
-	t.fnDestroy();
-	screenData();
+	t.fnDestroy(); */
 	$.ajax({
 		url : url,
 		type : "POST",
 		dataType:"json",
-		//data:{"test": JSON.stringify(obj)},
 		//contentType: "application/json; charset=utf-8",
-		//data:obj,
-		//data:JSON.stringify(obj),
+		//data:screenData(), error
 		success : function(getData) {
-			var datatable = JSON.parse(getData);
+			var datatable = JSON.stringify(getData);
+			var datatable = getData;
+			
 			$('#example').DataTable({
 				"paging" : false,
 				"info" : false,
@@ -57,8 +54,13 @@ function doSelect() {
 				"scrollY" : "460px",
 				"scrollCollapse" : true,
 				
-				data : datatable,
-				columns : [ {
+				"data" : datatable,
+				"columns" : [ {
+					title : "check",
+					render : function(){
+						return "<input type='checkbox' />";
+					}
+				},{
 					title : "productId",
 					data : 'productId'
 				}, {
@@ -77,8 +79,37 @@ function doSelect() {
 					title : "customer",
 					data : "customer"
 				} ]
-
+			
 			});
+			
+			
+			
+            $('#example tbody').on('click', 'td', function () {
+            	var $table = $('#example').DataTable();
+                
+				var selectedCellRow = $table.row($(this).parent()).index();
+	
+				if($table.column(this).index()!==0){
+					var selectedCellValue = $table.cell($(this)).data();					
+					var $div = "<div id ='currentDiv'}></div>";
+					
+					if(selectFlag!==true){
+						$(this).html($div);
+						selectFlag= true;
+						$("#currentDiv").selectPlugin("init", "currentDiv", ${test}, false);
+						$("#currentDiv_input").remove();
+						$("#currentDiv").click(function(e){
+							return false;
+						})
+						$("#currentDiv_select").change(function(){
+							selectedCellValue =$("#currentDiv_select").val();
+							$table.cell($(this).closest("td")).data(selectedCellValue);
+							selectFlag = false;
+						});
+					}
+				}
+            } );
+
 		}
 
 	});

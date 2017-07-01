@@ -64,7 +64,7 @@ public class AdminService {
 
 	@RequestMapping("doSelect")
 	@ResponseBody
-	public String doSelect(HttpServletRequest request, Model model, Product p)
+	public String doSelect(Model model)
 			throws JsonProcessingException {
 
 		ObjectMapper objectMapper = new ObjectMapper();
